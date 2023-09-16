@@ -14,6 +14,7 @@ public class Spring6DiApplication {
         System.out.println("Just before the \"getBean\"");
         MyController myController = ctx.getBean(MyController.class);
         System.out.println(myController.roar());
+        myController.sayHello();
     }
 
 }
