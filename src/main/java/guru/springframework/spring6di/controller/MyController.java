@@ -1,6 +1,7 @@
 package guru.springframework.spring6di.controller;
 
 import guru.springframework.spring6di.service.GreetingService;
+import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -9,13 +10,19 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class MyController {
 
-    private final GreetingService greetingService;
+    private GreetingService greetingService;
 
-    @Value("${spring.profiles.active}")
+    @PostConstruct
+    void postConstruct(){
+        if(activeProfiles == null || activeProfiles.isBlank())
+            activeProfiles = "FU#K YOU";
+    }
+
+    @Value("${spring.profiles.actives}")
     private String activeProfiles;
 
     @Autowired
-    public MyController(GreetingService greetingService) {
+    public void setGreetingService(GreetingService greetingService) {
         this.greetingService = greetingService;
         System.out.println("MyController created!");
     }
