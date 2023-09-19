@@ -13,4 +13,6 @@ public abstract class MethodLookupLockOpener implements LockOpener{
     @Override
     @Lookup("keyHelper")
     public abstract KeyHelper getMyKeyHelper();
+
+
 }
